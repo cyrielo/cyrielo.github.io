@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col s5 offset-s4 col-md-offset-4">
+            <div id="login-container">
+                <h2 align="center" id="logo">
+                    <img ng-src="asset/img/registro.png"/>
+                    <br/>
+                    Login
+                </h2>
+                <div class="form-errors">
+                    <ul>
+
+                    </ul>
+                </div>
+                <form method="post" action="" id="login-form">
+                    <input type="text" name="username" ng-model="username" required placeholder="Username" class="form-control"/>
+                    <input type="password" name="password" required ng-model="password" placeholder="Password" class="form-control"/>
+                    <br/>
+                    <button type="button" class="btn btn-primary btn-block" ng-click="Auth.login(username, password)">
+                        Login <i class="fa fa-sign-in"></i>
+                    </button>
+                    <a href="#/register" class="btn btn-success btn-block">
+                        Create Account <i class="fa fa-user-plus"></i>
+                    </a>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

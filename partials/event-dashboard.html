@@ -1,0 +1,28 @@
+<div class="">
+  <div class="row">
+      <div class="col s12 m12 20">
+        <ul class="event-lists">
+          <li ng-repeat="event in events">
+            <div class="card teal lighten-1 darken-1">
+              <div class="card-content white-text">
+                <span class="card-title"> {{event.event_name}} </span>
+                <p>
+                  {{event.event_description}}
+                </p>
+              </div>
+              <div class="card-action" align="center">
+                <a href="#/event-details/{{event.event_id}}">Event details</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div ng-if="events.length < 1" class="no_result" align="center">
+          <p>
+            No event found
+          </p>
+        </div>
+      </div>
+  </div>
+  <!-- Modal Trigger -->
+</div>
+<!-- #016AAB -->

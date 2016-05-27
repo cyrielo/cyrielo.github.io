@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="">
+            <div class="card-panel">
+                <h4 align="center">Create Event</h4>
+                <form method="post" action="" id="register-form">
+                    <input type="text" name="event_name" id="event_name" ng-model="event_name" placeholder="Event name" class="form-control"/>
+                    <textarea cols="60" rows="6" name="event_description" id="event_description" ng-model='event_description' placeholder="Event description"
+                    class="form-control materialize-textarea event_desc_input"></textarea>
+                    <input type="number" name="event_capacity" ng-model="event_capacity" id="event_capacity"
+                           placeholder="Event capacity" class="form-control"/>
+                    <button type="button" ng-click='Dashboard.createEvent(event_name, event_description, event_capacity)'
+                            class="waves-effect waves-green btn ">
+                        Create
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="row">
+        <div class="">
+            <div class="card-panel">
+                <h4>Event details:</h4>
+                <hr/>
+                <b>Name:</b> {{event_details.event_name}}
+                <br/>
+                <b>Description:</b> {{event_details.event_description}}
+                <br/>
+                <b>Total Attendants:</b> {{event_details.attendants}}
+                <br/>
+                <b>Event Capacity:</b> {{event_details.event_capacity}}
+                <br/>
+                <b>Event Owner:</b> {{event_details.event_owner}}
+                <br/>
+                <br/>
+                <button class="btn waves-effect grey-text text-lighten-5 red darken-4"
+                        ng-click="Dashboard.deleteEvent(event_details.event_id)">
+                    <i class="fa fa-trash-o fa-fw"></i> Delete event
+                </button>
+            </div>
+            <div class="card-panel">
+                <h4 class="">
+                    Attendance list
+                    <div class="pull-right">
+                        <button
+                                ng-click="Dashboard.checkIn(event_id, user_key)"
+                                class="waves-effect grey-text text-lighten-5 lighten-2 btn">
+                            Check-in
+                        </button>
+                        <button ng-click="Dashboard.checkOut(event_id, user_key)"
+                                class="waves-effect grey-text red darken-4 text-lighten-5 btn">
+                            Check-out
+                        </button>
+                    </div>
+                </h4>
+                <ul class="collection">
+                    <li class="collection-item avatar" ng-repeat="attendant in attendance_list">
+                        <i class="material-icons circle green"> <i class="fa fa-user"></i> </i>
+                        <p>
+                            <b>Name:</b> {{attendant.full_name}}
+                            <br/>
+                            <b>Check-in:</b> {{DateHelper.parseTimeInt(attendant.check_in_time)}}
+                        </p>
+                    </li>
+                    <li  ng-if="attendance_list.length < 1" class="no_result">
+                        <div align="center" >
+                            No user has checked-in for this event
+                        </div>
+                    </li>
+                </ul>
+                <button ng-click="openAttendanceLogs()" class="btn btn-sm">
+                    <i class="fa fa-history fa-fw"></i> Previous Check-outs
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal1" ng-controller="headerCtrl" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <div id="checkoutWaiter" align="center">
+            <div class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="" id="checkoutData">
+            <h4 align="center">Attendance History</h4>
+            <table class="striped centered responsive-table">
+                <thead>
+                <tr>
+                    <th data-field="id">Name</th>
+                    <th data-field="name">Check-in</th>
+                    <th data-field="price">Check-out</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="attendant in attendance_archive_list">
+                    <td>{{attendant.full_name}}</td>
+                    <td>{{DateHelper.parseTimeInt(attendant.check_in_time)}}</td>
+                    <td>{{DateHelper.parseTimeInt(attendant.check_out_time)}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-action modal-close waves-effect waves-green btn">
+            Close
+        </button>
+    </div>
+</div>

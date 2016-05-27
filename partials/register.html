@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col s8 offset-s2 col-md-offset-4">
+            <div id="register-container">
+                <h2 align="center" id="logo">
+                    <img ng-src="asset/img/registro.png"/>
+                    <br/>
+                    Create Account
+                </h2>
+                <form method="post" action="" id="register-form">
+                    <input type="text" name="full_name" ng-model="full_name" placeholder="Full name" class="form-control"/>
+                    <input type="text" name="username" ng-model="username" placeholder="Username" class="form-control"/>
+                    <input type="password" name="password" ng-model="password" placeholder="Password" class="form-control"/>
+                    <input type="password" name="password_again" ng-model="password_again" placeholder="Re-type password"
+                           class="form-control"/>
+                    <br/>
+                    <button ng-click="Auth.register(full_name, username, password, password_again)"
+                            class="btn btn-success btn-block" type="button">
+                        Create Account <i class="fa fa-user-plus"></i>
+                    </button>
+                    <a href="#/login" class="btn btn-primary btn-block">
+                        Login <i class="fa fa-sign-in"></i>
+                    </a>
+                </form>
+               <!-- <div class="preloader-wrapper small active">
+                    <div class="spinner-layer spinner-green-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
