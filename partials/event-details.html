@@ -15,7 +15,7 @@
                 <b>Event Owner:</b> {{event_details.event_owner}}
                 <br/>
                 <br/>
-                <button class="btn waves-effect grey-text text-lighten-5 red darken-4"
+                <button ng-if="username == event_details.event_owner" class="btn waves-effect grey-text text-lighten-5 red darken-4"
                         ng-click="Dashboard.deleteEvent(event_details.event_id)">
                     <i class="fa fa-trash-o fa-fw"></i> Delete event
                 </button>

@@ -45,6 +45,7 @@ var RegistroAppControllers = angular.module('RegistroApp.controllers', [])
         $scope.DateHelper = DateHelper;
         $scope.event_id = $stateParams.eventId;
         $scope.user_key = Storage.get('user_key');
+        $scope.username = Storage.get('username');
 
         $scope.openAttendanceLogs = function(){
             Dashboard.getAttendanceArchive($stateParams.eventId, function(attendanceArchive){
