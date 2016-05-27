@@ -1,0 +1,57 @@
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+body{
+    background-color: #e8e8e8;
+}
+/*Login Page Design*/
+#login-container, 
+#register-container{
+  margin-top: 30px;
+  background-color: #fbfbfb;
+  box-shadow: 1px 1px 1px rgb(200, 200, 200);
+  padding: 20px;
+  border-radius: 6px;
+}
+
+#login-form input, 
+#register-form input{
+    margin-bottom: 5px;
+}
+
+/*Design the event *dashboard*/
+#brand{
+  font-size: 20px;
+  color : #333 !important;
+}
+#brand img{
+  height: 66px;
+  margin-top: -4px;
+  margin-left: 15px;
+}
+.left-sidebar{
+  background: purple;
+}
+.event-lists li{
+  display: inline-block !important;
+  margin-right: 10px;
+}
+.event_desc_input{
+  min-width: 100%;
+  max-width: 100%;
+  border-color: inherit;
+}
+.card-action a{
+  color: #ffd8a6 !important;
+}
+.no_result{
+  padding: 5px;
+  box-shadow: 1px 1px 1px rgb(200, 200, 200);
+  color: #6b6b6b;
+  border-radius: 3px;
+  margin-top: 30px;
+}
+#checkoutData{
+  display: none;
+}
