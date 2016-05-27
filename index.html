@@ -1,18 +1,41 @@
 <!DOCTYPE html>
-<html ng-app="RegistroApp">
+<html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="lib/bootstrap-3.3.6-dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="lib/font-awesome-4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="lib/sweet-alert/sweet-alert.css">
         <link rel="stylesheet" href="asset/css/main.css">
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="lib/materialize/css/materialize.min.css" media="screen,projection"/>
     </head>
-    <body>
+    <body ng-app="RegistroApp">
+        <div ui-view="headerView">
 
+        </div>
+        <div ui-view="mainView">
+
+        </div>
     </body>
     <script src="lib/jquery/jquery-1.12.3.js"></script>
     <script src="lib/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular-ui-router.min.js"></script>
     <script src="lib/angular/angular-cookies.min.js"></script>
+    <script src="lib/sweet-alert/sweet-alert.min.js"></script>
+    <script type="text/javascript" src="lib/materialize/js/materialize.min.js"></script>
+    <script type="text/javascript" src="lib/md5/md5.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAjvnel_OOs4yaRugOoWvf6UXVUWa1npb4",
+        authDomain: "attendance-registro.firebaseapp.com",
+        databaseURL: "https://attendance-registro.firebaseio.com",
+        storageBucket: "attendance-registro.appspot.com"
+    };
+    firebase.initializeApp(config);
+</script>
     <!--My files-->
     <script src="asset/js/app.js"></script>
     <script src="asset/js/controllers.js"></script>
