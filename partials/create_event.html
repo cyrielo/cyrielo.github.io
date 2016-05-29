@@ -7,9 +7,21 @@
                     <input type="text" name="event_name" id="event_name" ng-model="event_name" placeholder="Event name" class="form-control"/>
                     <textarea cols="60" rows="6" name="event_description" id="event_description" ng-model='event_description' placeholder="Event description"
                     class="form-control materialize-textarea event_desc_input"></textarea>
+
                     <input type="number" name="event_capacity" ng-model="event_capacity" id="event_capacity"
                            placeholder="Event capacity" class="form-control"/>
-                    <button type="button" ng-click='Dashboard.createEvent(event_name, event_description, event_capacity)'
+                    <label for="event_start_date">Event start date</label>
+                    <input type="date" name="event_start_date" ng-model="event_start_date" id="event_start_date"
+                                  placeholder="Event start date" class="form-control"/>
+                    <label for="event_start_date">Event end date</label>
+                    <input type="date" name="event_end_date" ng-model="event_end_date" id="event_end_date"
+                            placeholder="Event end date" class="form-control"/>
+
+                    <input type="text" name="event_venue" ng-model="event_venue" id="event_venue"
+                          placeholder="Event venue" class="form-control"/>
+
+                    <button type="button"
+                    ng-click='Dashboard.createEvent(event_name, event_description, event_capacity, event_start_date, event_end_date, event_venue )'
                             class="waves-effect waves-green btn ">
                         Create
                     </button>

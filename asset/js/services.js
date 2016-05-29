@@ -112,9 +112,11 @@ var RegistroAppServices = angular.module('RegistroApp.services', [])
             attendanceTable : 'attendance',
             attendanceArchive : 'attendanceArchive',
 
-            createEvent : function(event_name, event_description, event_capacity){
+            createEvent : function(event_name, event_description,
+              event_capacity, event_start_date, event_end_date, event_venue ){
+                console.log( arguments );
               var errors = [];
-              
+
               if( typeof event_name == 'undefined' )
                 errors.push('Please enter an event name');
               else if( event_name.trim().length < 1 )
@@ -122,13 +124,34 @@ var RegistroAppServices = angular.module('RegistroApp.services', [])
 
               if( typeof event_description == 'undefined' )
                 errors.push('Event description is required');
-              else if ( event_description.trim().length < 1 ) 
+              else if ( event_description.trim().length < 1 )
                 errors.push('Event description is empty');
 
               if( typeof event_capacity == 'undefined' )
                 errors.push('Event capacity is required');
               else if( typeof parseInt( event_capacity ) != 'number' )
                 errors.push('Event capacity must be a number');
+
+
+              // event_start_date, event_end_date, event_venue
+              var today =  Date.parse( new Date().toString() );
+
+              console.log(event_start_date);
+              if( typeof event_start_date == 'undefined' )
+                errors.push('Please enter a start date for your event');
+              else if ( today > Date.parse(new Date(event_start_date).toString()) )
+                errors.push('Event start date can\'t be in the past');
+
+              if( typeof event_end_date == 'undefined' )
+                errors.push('Please enter an end date for your event');
+              else if ( today > Date.parse(new Date(event_end_date).toString()) )
+                errors.push('Event end date can\'t be in the past');
+
+              if( typeof event_venue == 'undefined' )
+                errors.push('Event venue is required');
+              else if( event_venue.trim().length < 1 )
+                errors.push('Event venue is empty');
+
               if( errors.length < 1 ){
                   var newEventKey = firebaseDatabase.ref( this.eventTable).push().key;
                   firebaseDatabase.ref( this.eventTable + '/' + newEventKey).set({
@@ -137,7 +160,10 @@ var RegistroAppServices = angular.module('RegistroApp.services', [])
                       event_capacity : event_capacity,
                       event_owner : Storage.get('username'),
                       attendants : 0,
-                      event_id : newEventKey
+                      event_id : newEventKey,
+                      event_start_date :  Date.parse(new Date(event_start_date).toString()),
+                      event_end_date :  Date.parse(new Date(event_end_date).toString()),
+                      event_venue :  event_venue
                   }).then(function(){
                       sweetAlert({
                           title : 'Done!',
@@ -207,7 +233,7 @@ var RegistroAppServices = angular.module('RegistroApp.services', [])
                             }
                         });
                     }else {
-                        sweetAlert('Oops...', 'Sorry this event is filled up, check back next time', 'error');
+                        sweetAlert('Oops...', 'Sorry this event is passed or filled up, check back next time', 'error');
                     }
                 })
             },
@@ -244,7 +270,7 @@ var RegistroAppServices = angular.module('RegistroApp.services', [])
             canCheckIn : function( event_id, callback ){
                 firebaseDatabase.ref( this.eventTable + '/' + event_id).once('value', function (event_obj) {
                     event_obj = event_obj.val();
-                    ( event_obj.event_capacity > event_obj.attendants ) ? callback(true, event_obj.attendants) : callback(false);
+                    ( event_obj.event_capacity > event_obj.attendants && event_obj.event_end_date > Date.parse( new Date().toString() ) ) ? callback(true, event_obj.attendants) : callback(false);
                 })
             },
             isCheckedIn : function(event_id, user_id, callback){
@@ -325,6 +351,8 @@ var RegistroAppServices = angular.module('RegistroApp.services', [])
     }).service('DateHelper', function(){
         return {
             parseTimeInt : function(time_int){
+              if (typeof time_int == 'undefined')
+                return '';
                 var
                     date_string = '',
                     date = new Date( time_int ),
