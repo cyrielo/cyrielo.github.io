@@ -14,6 +14,11 @@
                 <br/>
                 <b>Event Owner:</b> {{event_details.event_owner}}
                 <br/>
+                <b>Event Start Date:</b> {{DateHelper.parseTimeInt( event_details.event_start_date )}}
+                <br/>
+                <b>Event End Date:</b> {{DateHelper.parseTimeInt( event_details.event_end_date )}}
+                <br/>
+                <b>Event Venue:</b> {{event_details.event_venue}}
                 <br/>
                 <button ng-if="username == event_details.event_owner" class="btn waves-effect grey-text text-lighten-5 red darken-4"
                         ng-click="Dashboard.deleteEvent(event_details.event_id)">
